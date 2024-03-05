@@ -1,0 +1,130 @@
+---
+title: "Exploratory Data Analysis"
+author: "ERICK_GURU"
+date: "2024-03-03"
+output:
+  pdf_document: default
+  html_document: default
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Exploratory Data Analysis (EDA)
+
+Exploratory Data Analysis is one of the critical processes of performing initial investigations on data analysis.
+
+Basic idea is to discover the patterns, anomalies, test hypotheses, and check the assumptions with the help of summary statistics and graphical representations.
+
+The main idea about exploratory data analysis are
+
+1.  maximize insight into a data set;
+
+2.  uncover underlying structure;
+
+3.  extract important variables;
+
+4.  detect outliers and anomalies;
+
+5.  test underlying assumptions;
+
+6.  develop parsimonious models;
+
+7.  determine optimal factor settings.
+
+```{r message=FALSE, warning=FALSE}
+#libraries
+library(tidyverse)
+library(DataExplorer)
+```
+
+The dataset we are using for exploratory data analysis is from gss_cat.
+
+```{r warning=FALSE, message=FALSE}
+gss_cat %>% dim()
+head(gss_cat)
+tail(gss_cat)
+```
+
+The datasets contains 21,483 observations and 9 variables.
+
+### Dataset Overview
+
+```{r}
+gss_cat %>%  glimpse()
+```
+
+Above function will provide basic idea about variables in the datasets.
+
+### Introduce
+
+Let's introduce the data set based on introduce function.
+
+```{r}
+gss_cat %>%  introduce()
+```
+
+Now you can see the dataset contains 21483 observations with 9 variables all other kind of information's.
+
+### Visualization
+
+Most EDA techniques are graphical in nature with a few quantitative techniques. Here we are going to explain different kind of visualization techniques to identify the pattern and relationships.
+
+```{r}
+gss_cat %>% plot_intro()
+```
+
+66.7% contains Discrete columns, 33.3% contains continuous columns.
+
+52.6% contains complete rows and 5.3% contains missing observations.
+
+All columns with missing values are 0%.
+
+```{r}
+gss_cat %>% plot_missing()
+```
+
+```{r}
+gss_cat %>% profile_missing()
+```
+
+### Density Plot
+
+```{r}
+gss_cat %>%   plot_density()
+```
+
+### Histogram
+
+```{r}
+gss_cat %>% plot_histogram()
+```
+
+### Bar Plot
+
+```{r}
+gss_cat %>% plot_bar()
+```
+
+### Correlation Plot
+
+```{r}
+gss_cat %>% plot_correlation()
+```
+
+```{r}
+gss_cat %>% plot_correlation(maxcat =6)
+```
+
+maxcat can adjust based on your variables and interest. You can make use Data Explorer package for quick checking before proceeding to further analysis.
+
+```{r}
+# gss_cat %>%
+#  create_report()
+# # output_file = "gss_survey_data_profile_report",
+# # output_dir = "D:/RStudio/EDA/",
+# # y="rincome",
+# # report_title = "EDA Report"
+# # )
+```
